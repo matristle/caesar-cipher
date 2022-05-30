@@ -5,28 +5,26 @@ class Integer
 end
 
 def check_and_transform(number, shift_factor)
-  if number.in_either_bounds?
-    shifted_number = number + shift_factor
+  return number unless number.in_either_bounds?
 
-    unless shifted_number.in_either_bounds?
-      lower_limit, upper_limit = 65, 90  if number.between?(65, 90)
-      lower_limit, upper_limit = 97, 122 if number.between?(97, 122)
-      count = 0
-      if shift_factor.positive? 
-        number.upto(upper_limit) { count += 1 }
-        return lower_limit - (count - shift_factor)
-      elsif shift_factor.negative?
-        number.downto(lower_limit) { count += 1 }
-        return upper_limit + (count + shift_factor)
-      else
-        return number
-      end
+  shifted_number = number + shift_factor
 
+  unless shifted_number.in_either_bounds?
+    lower_limit, upper_limit = 65, 90  if number.between?(65, 90)
+    lower_limit, upper_limit = 97, 122 if number.between?(97, 122)
+    count = 0
+    if shift_factor.positive? 
+      number.upto(upper_limit) { count += 1 }
+      return lower_limit - (count - shift_factor)
+    elsif shift_factor.negative?
+      number.downto(lower_limit) { count += 1 }
+      return upper_limit + (count + shift_factor)
     else
-      return shifted_number
+      return number
     end
-  else # number isn't an ASCII alphabetical letter
-    return number
+
+  else
+    return shifted_number
   end
 end
 
