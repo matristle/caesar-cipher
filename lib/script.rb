@@ -4,27 +4,27 @@ class Integer
   end
 end
 
-def check_and_transform(number, shift_factor)
-  return number unless number.in_either_bounds?
+def check_and_transform(ordinal_number, shift_factor)
+  return ordinal_number unless ordinal_number.in_either_bounds?
 
-  shifted_number = number + shift_factor
+  shifted_ordinal_number = ordinal_number + shift_factor
 
-  unless shifted_number.in_either_bounds?
-    lower_limit, upper_limit = 65, 90  if number.between?(65, 90)
-    lower_limit, upper_limit = 97, 122 if number.between?(97, 122)
+  unless shifted_ordinal_number.in_either_bounds?
+    lower_limit, upper_limit = 65, 90  if ordinal_number.between?(65, 90)
+    lower_limit, upper_limit = 97, 122 if ordinal_number.between?(97, 122)
     count = 0
     if shift_factor.positive? 
-      number.upto(upper_limit) { count += 1 }
+      ordinal_number.upto(upper_limit) { count += 1 }
       return lower_limit - (count - shift_factor)
     elsif shift_factor.negative?
-      number.downto(lower_limit) { count += 1 }
+      ordinal_number.downto(lower_limit) { count += 1 }
       return upper_limit + (count + shift_factor)
     else
-      return number
+      return ordinal_number
     end
 
   else
-    return shifted_number
+    return shifted_ordinal_number
   end
 end
 
