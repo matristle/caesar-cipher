@@ -1,10 +1,14 @@
-
+class Integer
+  def in_either_bounds?
+    between?(65, 90) || between?(97, 122)
+  end
+end
 
 def check_and_transform(number, shift_factor)
-  if number.between?(65, 90) || number.between?(97, 122)
+  if number.in_either_bounds?
     shifted_number = number + shift_factor
 
-    unless shifted_number. between?(65, 90) || shifted_number.between?(97, 122)
+    unless shifted_number.in_either_bounds?
       lower_limit, upper_limit = 65, 90  if number.between?(65, 90)
       lower_limit, upper_limit = 97, 122 if number.between?(97, 122)
       count = 0
@@ -25,7 +29,6 @@ def check_and_transform(number, shift_factor)
     return number
   end
 end
-
 
 def caesar_cipher(string, shift_factor = 5)
   ascii_code_array = string.split('').map { |character| check_and_transform(character.ord, shift_factor) }
