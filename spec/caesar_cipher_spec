@@ -1,0 +1,7 @@
+require './lib/script.rb'
+
+describe "#caesar_cipher" do
+  it "returns foo when bar" do
+    expect(caesar_cipher('ABCDEFGHIJKLMNOP', 1)).to eql('BCDEFGHIJKLMNOPQ')
+  end
+end
